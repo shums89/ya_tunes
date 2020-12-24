@@ -1,3 +1,5 @@
+import { addZero } from './subScript.js'
+
 export const videoPlayerInit = () => {
 
   const videoPlayer = document.querySelector('.video-player');
@@ -28,10 +30,6 @@ export const videoPlayerInit = () => {
   function stopPlay() {
     videoPlayer.pause();
     videoPlayer.currentTime = 0;
-  }
-
-  function addZero(n) {
-    return n < 10 ? '0' + n : n;
   }
 
   videoPlayer.addEventListener('click', togglePlay);

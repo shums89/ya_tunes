@@ -1,2 +1,14 @@
 # ЯTunes
-### Учебный проект [Glo Academy](https://glo.academy/) на 4х-дневном интенсиве iTunes. Изучаем JavaScript. Проект доступен по [ссылке](https://shums89.github.io/ya_tunes/).
+### Учебный проект [Glo Academy](https://glo.academy/) на 4х-дневном интенсиве [ЯTunes](https://glo.academy/intensive/intensiv-pishem-itunes-na-javascript/) на JavaScript. Проект доступен по [ссылке](https://shums89.github.io/ya_tunes/).
+
+ДЕНЬ 1. "Подготовка проекта".
+Разобьем проект на модули, переключатель между плеерами.
+
+ДЕНЬ 2. "Функции плеера".
+Проигрыватель видео, перемотка, пауза и стоп, API Video.
+
+ДЕНЬ 3. "API Audio".
+Потоковое вещание радио, с возможностью смены радиостанций.
+
+ДЕНЬ 4. "Завершаем проект".
+Завершаем весь функционал сервиса. Работаем с API Audio.

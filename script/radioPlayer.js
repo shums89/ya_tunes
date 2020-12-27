@@ -6,6 +6,8 @@ export const radioPlayerInit = () => {
   const radioHeaderBig = document.querySelector('.radio-header__big');
   const radioItem = document.querySelectorAll('.radio-item');
   const radioStop = document.querySelector('.radio-stop');
+  const radioVolume = document.querySelector('.radio-volume');
+  const radioMute = document.querySelector('.radio-mute');
 
   const audio = new Audio();
   audio.type = 'audio/aac';
@@ -27,6 +29,11 @@ export const radioPlayerInit = () => {
   function selectItem(elem) {
     radioItem.forEach(item => item.classList.remove('select'));
     elem.classList.add('select');
+  }
+
+  function changeVolume() {
+    audio.volume = radioVolume.value / 100;
+    audio.muted = false;
   }
 
   radioNavigation.addEventListener('change', event => {
@@ -56,4 +63,16 @@ export const radioPlayerInit = () => {
     changeIconPlay();
   });
 
+  radioVolume.addEventListener('input', changeVolume);
+  radioMute.addEventListener('click', () => {
+    audio.muted = !audio.muted;
+  });
+
+
+  changeVolume();
+
+  return () => {
+    audio.pause();
+    changeIconPlay();
+  };
 };

@@ -30,6 +30,8 @@ export const musicPlayerInit = () => {
     } else {
       audioPlayer.play();
     }
+
+    audioProgressTiming.style.width = 0;
   }
 
   function prevTrack() {
@@ -50,6 +52,23 @@ export const musicPlayerInit = () => {
     }
 
     loadTrack();
+  }
+
+  function updateTime() {
+    const duration = audioPlayer.duration;
+    const currentTime = audioPlayer.currentTime;
+    const progress = currentTime / duration * 100;
+
+    audioProgressTiming.style.width = progress + '%';
+
+    let minutePassed = Math.floor(currentTime / 60) || '0';
+    let secondPassed = Math.floor(currentTime % 60) || '0';
+
+    let minuteTotal = Math.floor(duration / 60) || '0';
+    let secondTotal = Math.floor(duration % 60) || '0';
+
+    audioTimePassed.textContent = `${addZero(minutePassed)}:${addZero(secondPassed)}`;
+    audioTimeTotal.textContent = `${addZero(minuteTotal)}:${addZero(secondTotal)}`;
   }
 
   audioNavigation.addEventListener('click', event => {
@@ -84,22 +103,7 @@ export const musicPlayerInit = () => {
     });
   });
 
-  audioPlayer.addEventListener('timeupdate', () => {
-    const duration = audioPlayer.duration;
-    const currentTime = audioPlayer.currentTime;
-    const progress = currentTime / duration * 100;
-
-    audioProgressTiming.style.width = progress + '%';
-
-    let minutePassed = Math.floor(currentTime / 60) || '0';
-    let secondPassed = Math.floor(currentTime % 60) || '0';
-
-    let minuteTotal = Math.floor(duration / 60) || '0';
-    let secondTotal = Math.floor(duration % 60) || '0';
-
-    audioTimePassed.textContent = `${addZero(minutePassed)}:${addZero(secondPassed)}`;
-    audioTimeTotal.textContent = `${addZero(minuteTotal)}:${addZero(secondTotal)}`;
-  });
+  audioPlayer.addEventListener('timeupdate', updateTime);
 
   audioProgress.addEventListener('click', event => {
     const x = event.offsetX;
@@ -107,5 +111,7 @@ export const musicPlayerInit = () => {
     const progress = x / allWidth * audioPlayer.duration;
     audioPlayer.currentTime = progress;
   });
+
+  updateTime();
 
 };
